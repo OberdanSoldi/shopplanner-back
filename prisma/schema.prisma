@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model grocery {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name      String
+  category  Category
+  quantity  Int
+  purchased Boolean
+}
+
+enum Category {
+  FRUITS
+  VEGETABLES
+  MEAT
+  DRINK
+  BAKERY
+}
